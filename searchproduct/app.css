@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  width: 300px;
+  margin: 100px auto;
+}
+
+h2,
+p {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+table {
+  width: 100%;
+}
+
+thead th {
+  background-color: #21243d;
+  color: #ffffdd;
+}
+
+th {
+  text-align: left;
+  padding: 8px;
+}
+
+th:nth-child(even) {
+  text-align: center;
+}
+
+td {
+  padding: 4px 8px;
+}
+
+td:nth-child(even) {
+  text-align: center;
+}
+
+.outStock {
+  text-decoration: line-through;
+  color: #444;
+}
+
+.hidden {
+  display: none;
+}

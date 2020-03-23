@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.square {
+  float: left;
+  margin-top: -1px;
+  margin-left: -1px;
+  border-radius: 0;
+  border: 1px solid #999;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+}
+
+.square:focus {
+  outline: none;
+}
+
+input[type="number"] {
+  width: 35px;
+  outline: none;
+  border-radius: 0;
+  border: 1px solid #999;
+}
+
+.app {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.heading {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.desc {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.player {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.winner {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.info > button {
+  background-color: white;
+  border: 1px solid #999;
+  border-radius: 0;
+  padding: 10px 15px;
+  margin-bottom: 50px;
+}
