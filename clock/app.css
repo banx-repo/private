@@ -1,0 +1,42 @@
+h1,
+.actions,
+.records {
+  text-align: center;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 500;
+  margin-top: 100px;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.actions div {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.actions div#start {
+  background-color: white;
+  box-shadow: 0 0 5px #afafaf;
+  color: #222222;
+}
+
+.actions div#stop {
+  background-color: #ca1212;
+  box-shadow: 0 0 5px #ca1212;
+  color: white;
+}
+
+.actions div#reset {
+  background-color: white;
+  color: #222222;
+}

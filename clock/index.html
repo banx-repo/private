@@ -3,112 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="animate.css">
-    <style>
-      #clock, .actions, #board {
-        text-align: center;
-      }
-      #clock {
-        margin-top: 100px;
-        font-size: 90px;
-      }
-      .actions div {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #f7f7f7;
-        color: #7f7f7f;
-      }
-      .actions .enable {
-        box-shadow: 0 0 5px #9f9f9f;
-        color: #2f2f2f;
-        cursor: pointer;
-      }
-      .actions div:not(.enable) {
-        cursor: not-allowed;
-      }
-    </style>
+    <title>Clock</title>
+    <link rel="stylesheet" href="animate.css" />
+    <link rel="stylesheet" href="app.css" />
   </head>
   <body>
-    <div id="clock">00:00:00</div>
-    <div class="actions">
-      <div id="start" class="enable">Start</div>
-      <div id="stop">Stop</div>
-      <div id="step">Step</div>
-      <div id="reset">Reset</div>
-    </div>
-    <div id="board"></div>
+    <div id="clock"></div>
 
-    <script>
-      (function () {
-        var clock = document.getElementById("clock");
-        var board = document.getElementById("board");
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
-        var start = document.getElementById("start");
-        var stop = document.getElementById("stop");
-        var step = document.getElementById("step");
-        var reset = document.getElementById("reset");
-
-        var date = new Date(00, 00, 00, 000);
-        var counter = 1;
-        var runner = 1;
-        var timmer;
-
-        function setClock() {
-          date.setHours(0);
-          date.setMinutes(0);
-          date.setSeconds(counter++);
-          clock.textContent = date.toLocaleTimeString();
-        }
-
-        function runClock() {
-          timmer = setInterval(setClock, 1000);
-          start.removeEventListener("click", runClock);
-          step.addEventListener("click", writeStep);
-          start.classList.remove("enable");
-          stop.classList.add("enable");
-          step.classList.add("enable");
-          reset.classList.add("enable");
-        }
-
-        function stopClock() {
-          clearInterval(timmer);
-          start.addEventListener("click", runClock);
-          step.removeEventListener("click", writeStep);
-          start.classList.add("enable");
-        }
-
-        function writeStep() {
-          var time = date.toLocaleTimeString();
-          var p = document.createElement("p");
-          p.className = "animated fadeInDown";
-          p.textContent = `#${runner} ${time}`;
-          board.appendChild(p);
-          runner++;
-        }
-
-        function resetClock() {
-          clearInterval(timmer);
-          start.addEventListener("click", runClock);
-          step.removeEventListener("click", writeStep);
-          counter = 0;
-          runner = 1;
-          board.innerHTML = "";
-          setClock();
-          start.classList.add("enable");
-          stop.classList.remove("enable");
-          step.classList.remove("enable");
-          reset.classList.remove("enable");
-        }
-
-        start.addEventListener("click", runClock);
-        stop.addEventListener("click", stopClock);
-        reset.addEventListener("click", resetClock);
-      })();
-    </script>
+    <script src="app.jsx" type="text/jsx"></script>
   </body>
 </html>
