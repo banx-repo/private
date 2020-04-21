@@ -40,3 +40,12 @@ h1 {
   background-color: white;
   color: #222222;
 }
+
+.records {
+  counter-reset: p;
+}
+
+.records p::before {
+  counter-increment: p;
+  content: "#" counter(p) " ";
+}

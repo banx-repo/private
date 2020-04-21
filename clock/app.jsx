@@ -4,7 +4,10 @@ class Clock extends React.Component {
   }
 
   render() {
-    const time = `${this.props.h}:${this.props.m}:${this.props.s}`;
+    const m = this.props.m;
+    const s = this.props.s;
+    const ms = this.props.ms;
+    const time = `${m}:${s}:${ms}`;
     return <h1 onClick={(e) => this.props.onClick(time)}>{time}</h1>;
   }
 }
@@ -39,17 +42,16 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      seconds: 0,
+      ms: 0,
       status: 0,
-      records: [],
     };
   }
 
   start = () => {
     this.setState({ status: 1 });
     this.timmer = setInterval(() => {
-      this.setState((state) => ({ seconds: ++state.seconds }));
-    }, 1000);
+      this.setState((state) => ({ ms: state.ms + 1 }));
+    }, 10);
   };
 
   stop = () => {
@@ -58,31 +60,31 @@ class App extends React.Component {
   };
 
   record = (time) => {
-    const records = this.state.records;
-    records[records.length] = time;
-    this.setState({ records });
+    document
+      .querySelector(".records")
+      .insertAdjacentHTML("beforeend", `<p>${time}</p>`);
   };
 
   reset = () => {
-    this.setState({ seconds: 0, status: 0, records: [] });
+    this.setState({ ms: 0, status: 0 });
+    document.querySelector(".records").innerHTML = "";
   };
 
   render() {
     const status = this.state.status;
-    let seconds = this.state.seconds;
-    let s = (seconds % 60).toString().padStart(2, "0");
-    seconds = (seconds - s) / 60;
-    let m = (seconds % 60).toString().padStart(2, "0");
-    seconds = (seconds - m) / 60;
-    let h = (seconds % 24).toString().padStart(2, "0");
-
-    const records = this.state.records.map((record, index) => (
-      <Record record={`#${index + 1} ${record}`} />
-    ));
+    let time = this.state.ms;
+    let ms = (time % 100).toString().padStart(2, "0");
+    let s = (((time - ms) / 100) % 60).toString().padStart(2, "0");
+    let m = ((((time - ms) / 100 - s) / 60) % 60).toString().padStart(2, "0");
 
     return (
       <React.Fragment>
-        <Clock h={h} m={m} s={s} onClick={status === 1 ? this.record : () => false} />
+        <Clock
+          m={m}
+          s={s}
+          ms={ms}
+          onClick={status === 1 ? this.record : () => false}
+        />
         <div class="actions">
           <Button
             id={status === 0 ? "start" : status === 1 ? "stop" : "reset"}
@@ -92,7 +94,7 @@ class App extends React.Component {
             }
           />
         </div>
-        <div className="records">{records}</div>
+        <div className="records"></div>
       </React.Fragment>
     );
   }
